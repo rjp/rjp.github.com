@@ -1,0 +1,5 @@
+---
+github: ribot
+title: URL catching Jabber MUC bot
+words: The ribot bot sits on a Jabber MUC and uses <a href="http://github.com/rjp/linkylinky">the linkylinky library</a> to fetch information about the URLs it sees. The default behaviour is to fetch the initial 16k of the URL and look for a &lt;title&gt; tag. <a href="http://github.com/rjp/linkylinky/tree/master/lib/plugins/">Plugins</a> are provided which return more useful information - for example, <a href="http://github.com/rjp/linkylinky/blob/master/lib/plugins/twitter.rb">the twitter plugin</a> returns the text of the tweet.
+---
