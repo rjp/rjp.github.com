@@ -10,7 +10,8 @@ title: test file
     <meta http-equiv="content-type" 
         content="text/html;charset=utf-8" />
 <style type="text/css"><!--
-.item { font-weight: bold; font-size: large: }
+.item { font-weight: bold; font-size: large; }
+.code { font-family: monospace; font-size: small; }
 --></style>
 </head>
 
@@ -19,10 +20,24 @@ title: test file
 <ul>
 {% for post in site.posts %}
 <li><span class="item">{{ post.title }}</span><br/>
+{% capture ghlink %}/rjp/{{ post.github }}{% endcapture %}
+{% if post.ghpages %}<!-- implies github -->
+<a href="http://rjp.github.com/{{ post.github }}">Github pages</a>
+{% endif %}
 {% if post.github %}
-<a href="http://github.com/rjp/{{ post.github }}">http://github.com/rjp/{{ post.github }}</a><br/>
+<a href="http://github.com/rjp/{{ post.github }}">{{ ghlink }}</a><br/>
+{% endif %}
+{% if post.link %}
+<a href="{{ post.link }}">{{ post.link }}</a><br/>
 {% endif %}
 <div class="words"> {{ post.words | textilize }} </div>
+{% if post.extra %}
+{% if post.extratype == code %}
+ <div class="extra code"> {{ post.extra | textilize | newline_to_br }} </div>
+{% else %}
+ <div class="extra"> {{ post.extra | textilize }} </div>
+{% endif %}
+{% endif %}
 </li>
 {% endfor %}
 </ul>
