@@ -14,6 +14,7 @@ title: test file
 .item { font-weight: bold; font-size: large; }
 .code { font-family: monospace; font-size: small; }
 .opener { display: none; }
+.readmore { font-style: italic; }
 --></style>
 </head>
 
@@ -26,24 +27,22 @@ title: test file
 {% if post.ghpages %}<!-- implies github -->
 <a href="http://rjp.github.com/{{ post.github }}">Github pages</a>
 {% endif %}
-{% if post.github %}
-<a href="http://github.com/rjp/{{ post.github }}">{{ ghlink }}</a><br/>
-{% endif %}
+{% if post.github %} <a href="http://github.com/rjp/{{ post.github }}">{{ ghlink }}</a> {% endif -%}
 {% if post.link %}
-<a href="{{ post.link }}">{{ post.link }}</a><br/>
+<a href="{{ post.link }}">{{ post.link }}</a>
 {% endif %}
 <div class="words"> {{ post.words | textilize }} </div>
 {% if post.extra %}
 <div class='readmore'>More...</div><div class='opener'>
-{% if post.extratype == code %}
+{% if post.extratype == "code" -%}
  <div class="extra code"> {{ post.extra | textilize | newline_to_br }} </div>
-{% else %}
+{% else -%}
  <div class="extra"> {{ post.extra | textilize }} </div>
-{% endif %}
+{% endif -%}
 </div>
 {% endif %}
 </li>
-{% endfor %}
+{% endfor -%}
 </ul>
 </div>
 <script type="text/javascript">
