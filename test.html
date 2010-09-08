@@ -9,9 +9,11 @@ title: test file
     <title>About</title>
     <meta http-equiv="content-type" 
         content="text/html;charset=utf-8" />
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
 <style type="text/css"><!--
 .item { font-weight: bold; font-size: large; }
 .code { font-family: monospace; font-size: small; }
+.opener { display: none; }
 --></style>
 </head>
 
@@ -32,13 +34,28 @@ title: test file
 {% endif %}
 <div class="words"> {{ post.words | textilize }} </div>
 {% if post.extra %}
+<div class='readmore'>More...</div><div class='opener'>
 {% if post.extratype == code %}
  <div class="extra code"> {{ post.extra | textilize | newline_to_br }} </div>
 {% else %}
  <div class="extra"> {{ post.extra | textilize }} </div>
 {% endif %}
+</div>
 {% endif %}
 </li>
 {% endfor %}
 </ul>
-</div></body></html>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){
+    $('.readmore').click(function(e){
+        var x = $(this).next('.opener');
+        if (x.is(':visible')) {
+            $(this).text('More...');
+        } else {
+            $(this).text('Less...');
+        }
+        x.toggle();
+    })
+});
+</script></body></html>
