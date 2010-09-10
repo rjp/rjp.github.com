@@ -14,7 +14,7 @@ title: test file
 .item { font-weight: bold; font-size: large; }
 .code { font-family: monospace; font-size: small; }
 .opener { display: none; }
-.readmore { font-style: italic; }
+#body { max-width: 40em; }
 --></style>
 </head>
 
@@ -33,7 +33,7 @@ title: test file
 {% endif %}
 <div class="words"> {{ post.words | textilize }} </div>
 {% if post.extra %}
-<div class='readmore'>&#x25B6;</div><div class='opener'>
+<div class='readmore'>[+]</div><div class='opener'>
 {% if post.extratype == "code" -%}
  <div class="extra code"> {{ post.extra | textilize | newline_to_br }} </div>
 {% else -%}
@@ -50,9 +50,9 @@ $(document).ready(function(){
     $('.readmore').click(function(e){
         var x = $(this).next('.opener');
         if (x.is(':visible')) {
-            $(this).html('&#x25B6;');
+            $(this).html('[+]');
         } else {
-            $(this).html('&#x25BC;');
+            $(this).html('[-]');
         }
         x.toggle();
     })
